@@ -1,6 +1,5 @@
 package io.namoosori.travelclub.logic;
 
-import io.namoosori.travelclub.entity.ClubStoreMasterLycler;
 import io.namoosori.travelclub.entity.club.ClubMembership;
 import io.namoosori.travelclub.entity.club.CommunityMember;
 import io.namoosori.travelclub.entity.club.RoleInClub;
@@ -18,14 +17,19 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class MembershipServiceLogic implements MembershipService {
     private ClubStore clubStore;
     private MemberStore memberStore;
     private MembershipStore membershipStore;
 
-    public MembershipServiceLogic(){
-        clubStore = ClubStoreMasterLycler.getInstance().requestClubStore();
-        memberStore = ClubStoreMasterLycler.getInstance().requestMemberStore();
+    public MembershipServiceLogic(ClubStore clubStore, MemberStore memberStore,
+    		MembershipStore membershipStore){
+        this.clubStore = clubStore;
+        this.memberStore = memberStore;
+        this.membershipStore = membershipStore;
     }
 
     @Override

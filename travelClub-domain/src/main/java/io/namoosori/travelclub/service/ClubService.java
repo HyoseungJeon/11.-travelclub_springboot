@@ -1,9 +1,7 @@
 package io.namoosori.travelclub.service;
 
-import io.namoosori.travelclub.service.dto.ClubMembershipDto;
-import io.namoosori.travelclub.service.dto.TravelClubDto;
 
-import java.util.List;
+import io.namoosori.travelclub.service.dto.TravelClubDto;
 
 public interface ClubService {
     public void registerClub(TravelClubDto clubDto);

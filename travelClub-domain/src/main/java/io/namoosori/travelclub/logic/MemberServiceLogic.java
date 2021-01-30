@@ -1,6 +1,5 @@
 package io.namoosori.travelclub.logic;
 
-import io.namoosori.travelclub.entity.ClubStoreMasterLycler;
 import io.namoosori.travelclub.entity.club.CommunityMember;
 import io.namoosori.travelclub.util.InvalidEmailException;
 import io.namoosori.travelclub.service.MemberService;
@@ -14,13 +13,16 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.springframework.stereotype.Service;
+
+
+@Service
 public class MemberServiceLogic implements MemberService {
 
     private MemberStore memberStore;
 
-    public MemberServiceLogic(){
-//        memberStore = ClubStoreMapLycler.getInstance().requestMemberStore();
-        memberStore = ClubStoreMasterLycler.getInstance().requestMemberStore();
+    public MemberServiceLogic(MemberStore memberStore){
+        this.memberStore = memberStore;
     }
 
     @Override
