@@ -10,10 +10,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @SpringBootApplication
 public class TravelClubApplication {
-
-	static {
-		System.setProperty("spring.config.location", "classpath:/application.yml");
-	}
 		
 	public static void main(String[] args) {
 		SpringApplication.run(TravelClubApplication.class, args);
