@@ -88,7 +88,7 @@
 
 <script>
 export default {
-
+    name:'memberModify',
 }
 </script>
 

@@ -1,5 +1,7 @@
 package io.namoosori.travelclub.store;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import io.namoosori.travelclub.entity.club.TravelClub;
@@ -26,9 +28,9 @@ public class ClubMariaStore implements ClubStore{
 	}
 
 	@Override
-	public TravelClub retrieveByName(String name) {
+	public List<TravelClub> retrieveByName(String name) {
 		// TODO Auto-generated method stub
-		return clubMapper.retrieveByName(name);
+		return clubMapper.retrieveByName(name.trim());
 	}
 
 	@Override

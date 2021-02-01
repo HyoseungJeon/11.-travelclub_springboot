@@ -1,5 +1,6 @@
 <template>
-  	<div class="container">
+  <main id="main" class="index-main">
+    <div class="container">
 
         <h2 class="page-title text-center">Java 클럽</h2>
 
@@ -31,14 +32,14 @@
         <div class="content">
             <div class="row btn-action">
                 <div class="col-sm-12">
-                    <button class="btn btn-default">
+                    <button @click="onClickListBtn('clubList')" class="btn btn-default">
                         <i class="fas fa-list"></i> 목록
                     </button>
                     <div class="fl-right">
-                        <button class="btn btn-default btn-bordered">
+                        <button @click="onClickListBtn('clubModify',clubId)" class="btn btn-default btn-bordered">
                             <i class="fas fa-edit"></i> 수정
                         </button>
-                        <button class="btn btn-danger btn-bordered">
+                        <button @click="onClickDeleteBtn(clubId)" class="btn btn-danger btn-bordered">
                             <i class="fas fa-trash-alt"></i> 삭제
                         </button>
                     </div>
@@ -46,11 +47,41 @@
             </div>
         </div>
     </div>
+</main>
 </template>
 
 <script>
+import {club_find} from '../../api/ClubApi.js'
 export default {
+    name:'clubDetail',
+    data:function(){
+        return{
+            club:{},
+        }
+    },
+    props:{
+        clubId:{
+            type: String,
+            defalut: '',
+        }
+    },
+    mounted: async function(){
+        this.club = await club_find(this.clubId)
+    },
+    methods:{
+        onClickListBtn : function(menuname){
+            this.$emit('btnCliked',menuname);
+        },
+        onClickModifyBtn :function(menuname, clubId){
+             this.$emit('btnCliked',menuname,clubId);
+        },
+        onClickDeleteBtn : function(clubId){
+            //delete club logic
+            console.log(clubId)
 
+            this.$emit('btnCliked','clubList');
+        }
+    }
 }
 </script>
 

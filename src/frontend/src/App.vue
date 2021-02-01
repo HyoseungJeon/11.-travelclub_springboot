@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
     <!-- custom css -->
-    <link href="./assets/css/style.css" rel="stylesheet">
+    <!-- <link href="./assets/css/style.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
     <!-- IE8 에서 HTML5 요소와 미디어 쿼리를 위한 HTML5 shim 와 Respond.js -->
@@ -27,8 +27,10 @@
     <![endif]-->
 
     <Header></Header>
-    <router-view>
+    <div height="auto">
+      <router-view @btnCliked="handleClickMenu">
     </router-view>
+    </div>
     <Footer></Footer>
   </div>
 </template>
@@ -49,7 +51,26 @@ export default {
   data: function(){
     return{
       currentPage: 'defalut',
+      clubId : '0',
     }
+  },
+  methods:{
+    handleClickMenu : function(menuname, clubId){
+      console.log(menuname)
+      console.log(clubId)
+      switch(menuname){
+        case 'clubDetail':
+          this.$router.push({name : menuname, params: {clubId : clubId}})
+          break;
+        case 'clubModify':
+          this.$router.push({name : menuname, params: {clubId : clubId}})
+          break;
+        case 'clubList':
+        case 'clubRegister':
+          this.$router.push(menuname)
+          break;
+      }
+    },
   },
   components: {
     Header,
@@ -58,14 +79,15 @@ export default {
   head:{
     script:[
       { src : "https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"},
-      {src: "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"},
+      { src: "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"},
     ]
   }
 }
 </script>
 
-<style lang="scss">
-@import './assets/css/style.scss';
+<style lang="css">
+@import './assets/css/style.css';
+@import 'https://pro.fontawesome.com/releases/v5.10.0/css/all.css';
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

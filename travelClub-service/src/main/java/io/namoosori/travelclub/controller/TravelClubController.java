@@ -1,5 +1,7 @@
 package io.namoosori.travelclub.controller;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,7 +34,7 @@ public class TravelClubController {
 	}
 	
 	@GetMapping("/find-by-name")
-    public TravelClubDto findClubByName(@RequestParam String name) {
+    public List<TravelClubDto> findClubByName(@RequestParam String name) {
 		return clubService.findClubByName(name);
 	}
 	
@@ -49,6 +51,5 @@ public class TravelClubController {
 	@GetMapping("/echo")
 	public String echo() {
 		return "alive";
-		
 	}
 }

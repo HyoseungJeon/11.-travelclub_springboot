@@ -15,6 +15,7 @@ import io.namoosori.travelclub.util.NoSuchClubException;
 import io.namoosori.travelclub.util.NoSuchMemberException;
 import io.namoosori.travelclub.util.StringUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -57,10 +58,13 @@ public class ClubServiceLogic implements ClubService {
     }
 
     @Override
-    public TravelClubDto findClubByName(String name) {
-        return Optional.ofNullable(clubStore.retrieveByName(name))
-                .map(club -> new TravelClubDto(club))
-                .orElseThrow(() -> new NoSuchClubException("No such club with name: " + name));
+    public List<TravelClubDto> findClubByName(String name) {
+    	List<TravelClubDto> clubs = new ArrayList<>();
+    	clubStore.retrieveByName(name).stream().forEach(club -> clubs.add(new TravelClubDto(club)));
+    	if(clubs.size() == 0) {
+    		new NoSuchClubException("No such club with name: " + name);
+    	}
+        return clubs;
     }
 
     @Override

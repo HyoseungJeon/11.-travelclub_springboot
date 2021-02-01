@@ -120,7 +120,7 @@
 
 <script>
 export default {
-
+    name:'membershipList',
 }
 </script>
 

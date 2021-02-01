@@ -5,6 +5,14 @@
 <mapper
 	namespace="io.namoosori.travelclub.store.mapper.ClubMapper">
 
+	<!-- private String usid;
+    private String name;
+    private String intro;
+    private String foundationDay;
+
+    private String boardId;
+    private List<ClubMembership> membershipList; -->
+
 	<resultMap id="ClubWithMembership" type="io.namoosori.travelclub.entity.club.TravelClub">
         <id property="usid" column="usid"/>
         <id property="name" column="name"/>
@@ -46,12 +54,13 @@
         -->
 	
 	<select id="retrieveByName"
-            parameterType="String"
-            resultMap="ClubWithMembership">
+            parameterType="string"
+            resultMap="ClubWithMembership"
+            >
         select *
         from travelclub t, clubmembership c
         where t.usid = c.clubId
-        and t.name=#{name}
+        and t.name like '%${name}%'
     </select>
     
 	<update id="update" parameterType="io.namoosori.travelclub.entity.club.TravelClub">

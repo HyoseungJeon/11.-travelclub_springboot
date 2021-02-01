@@ -28,7 +28,7 @@
             <div class="row btn-action">
                 <div class="col-sm-12">
                     <div class="fl-right">
-                        <button class="btn btn-primary btn-bordered">
+                        <button @click="onClickComplateBtn()" class="btn btn-primary btn-bordered">
                             <i class="fas fa-check"></i> 등록
                         </button>
                     </div>
@@ -41,7 +41,19 @@
 
 <script>
 export default {
+    name:'clubRegister',
+    data:function(){
+        return {
+            club : {},
+        }
+    },
+    methods:{
+        onClickComplateBtn :function(){
+            //Register club logic~
 
+             this.$emit('btnCliked','clubList');
+        }
+    }
 }
 </script>
 

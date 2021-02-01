@@ -50,7 +50,7 @@
         select *
         from communitymember m, clubmembership s
         where m.email=s.memberEmail
-        and m.name=#{name}
+        and m.name like '%${name}%'
     </select>
 
     <update id="update"

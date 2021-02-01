@@ -37,11 +37,11 @@
         <div class="content">
             <div class="row btn-action">
                 <div class="col-sm-12">
-                    <button class="btn btn-default">
+                    <button @click="onClickListBtn()" class="btn btn-default">
                         <i class="fas fa-list"></i> 목록
                     </button>
                     <div class="fl-right">
-                        <button class="btn btn-primary btn-bordered">
+                        <button @click="onClickComplateBtn('',clubId)" class="btn btn-primary btn-bordered">
                             <i class="fas fa-check"></i> 수정 완료
                         </button>
                     </div>
@@ -53,7 +53,17 @@
 
 <script>
 export default {
+    name:'clubModify',
+    methods:{
+        onClickListBtn : function(){
+            this.$emit('btnCliked','clubList');
+        },
+        onClickComplateBtn :function(menuname, clubId){
+            //Update club logic~
 
+             this.$emit('btnCliked','clubDetail',clubId);
+        }
+    }
 }
 </script>
 
